@@ -37,18 +37,16 @@ export default function Profile() {
         </View>
       </View>
 
-      <View>
-        <ScrollView>
-          {SETTINGS_OPTIONS.map((option, index) => (
-            <View key={index}>
-              <SettingOption
-                option={option}
-                total={SETTINGS_OPTIONS.length}
-                index={index}
-              />
-            </View>
-          ))}
-        </ScrollView>
+      <View style={styles.settingsList}>
+        {SETTINGS_OPTIONS.map((option, index) => (
+          <View key={index}>
+            <SettingOption
+              option={option}
+              total={SETTINGS_OPTIONS.length}
+              index={index}
+            />
+          </View>
+        ))}
       </View>
 
       {/* Footer */}
@@ -65,6 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fffeff",
     paddingHorizontal: 20,
+    flexDirection: 'column',
   },
   container: {
     backgroundColor: "#fffeff",
@@ -129,9 +128,13 @@ const styles = StyleSheet.create({
     color: "#555555",
     marginTop: 4,
   },
+  settingsList: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
   footer: {
     alignItems: "center",
-    paddingVertical: 20,
+    paddingVertical: 18,
     backgroundColor: "#fffeff",
   },
   footerText: {
