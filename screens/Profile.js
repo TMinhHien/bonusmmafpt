@@ -5,17 +5,19 @@ import {
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SETTINGS_OPTIONS } from '../data/data';
 import SettingOption from '../components/SettingOption';
-import { Background, CameraIcon } from '../components/index';
+import { CameraIcon } from '../components/index';
+import ProfileBackground from '../assets/drawable-component/profile_background';
 
 export default function Profile() {
   return (
     <SafeAreaProvider style={styles.safeArea}>
-      <View style={styles.container}>
+      <ScrollView>
+        {/* Cover banner */}
         <View style={styles.coverContainer}>
-          <Background width="100%" height="100%" />
+          <ProfileBackground width="100%" height="100%" />
         </View>
 
-        {/* Profile Picture (Overlapping) */}
+        {/* Avatar overlapping cover */}
         <View style={styles.avatarWrapper}>
           <View style={styles.avatarCircle}>
             <Text style={styles.avatarLetter}>H</Text>
@@ -25,16 +27,16 @@ export default function Profile() {
           </TouchableOpacity>
         </View>
 
+        {/* Name & role */}
         <View style={styles.infoContainer}>
           <Text style={styles.userName}>Tran Dang Viet Huy (HUYTDV1)</Text>
           <Text style={styles.userRole}>(FHL.F3.GST.GCX)</Text>
         </View>
-      </View>
 
-      <View>
-        <ScrollView>
+        {/* Settings list */}
+        <View style={styles.settingsList}>
           {SETTINGS_OPTIONS.map((option, index) => (
-            <View key={index}>
+            <View key={option.id}>
               <SettingOption
                 option={option}
                 total={SETTINGS_OPTIONS.length}
@@ -42,8 +44,14 @@ export default function Profile() {
               />
             </View>
           ))}
-        </ScrollView>
-      </View>
+        </View>
+
+        {/* Footer */}
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>myFPT Version 5.9.10</Text>
+          <Text style={styles.footerText}>Copyright @ FPT Software 2021</Text>
+        </View>
+      </ScrollView>
     </SafeAreaProvider>
   );
 }
@@ -51,24 +59,17 @@ export default function Profile() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fffeff',
-    paddingHorizontal: 20,
-  },
-  container: {
-    backgroundColor: '#fffeff',
-    alignItems: 'center',
-    marginTop: 25,
-    marginBottom: 25,
+    backgroundColor: '#f2f2f7',
   },
   coverContainer: {
     width: '100%',
     height: 150,
-    marginTop: 10,
   },
   avatarWrapper: {
     marginTop: -65,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 0,
   },
   avatarCircle: {
     width: 130,
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     borderRadius: 65,
     backgroundColor: '#def3fe',
     borderWidth: 5,
-    borderColor: '#fffeff',
+    borderColor: '#ffffff',
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 4,
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
   cameraButton: {
     position: 'absolute',
     bottom: 5,
-    right: 5,
+    right: '32%',
     width: 38,
     height: 38,
     borderRadius: 19,
@@ -102,18 +103,36 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     marginTop: 15,
+    marginBottom: 20,
     alignItems: 'center',
     paddingHorizontal: 20,
+    backgroundColor: '#f2f2f7',
   },
   userName: {
-    fontSize: 19,
+    fontSize: 17,
     fontWeight: 'bold',
     color: '#1a1a1a',
     textAlign: 'center',
   },
   userRole: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#555555',
     marginTop: 4,
+  },
+  settingsList: {
+    backgroundColor: '#ffffff',
+    borderTopWidth: 1,
+    borderTopColor: '#e0e0e0',
+    paddingHorizontal: 20,
+  },
+  footer: {
+    marginTop: 24,
+    marginBottom: 16,
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 12,
+    color: '#aaaaaa',
+    lineHeight: 20,
   },
 });
