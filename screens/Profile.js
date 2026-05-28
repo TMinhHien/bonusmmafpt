@@ -20,7 +20,7 @@ export default function Profile() {
         {/* Avatar overlapping cover */}
         <View style={styles.avatarWrapper}>
           <View style={styles.avatarCircle}>
-            <Text style={styles.avatarLetter}>H</Text>
+            <Text style={styles.avatarLetter}>K</Text>
           </View>
           <TouchableOpacity style={styles.cameraButton} activeOpacity={0.8}>
             <CameraIcon width="100%" height="100%" />
@@ -29,8 +29,8 @@ export default function Profile() {
 
         {/* Name & role */}
         <View style={styles.infoContainer}>
-          <Text style={styles.userName}>Tran Dang Viet Huy (HUYTDV1)</Text>
-          <Text style={styles.userRole}>(FHL.F3.GST.GCX)</Text>
+          <Text style={styles.userName}>Phạm Quang Khang (KHANGPQ3)</Text>
+          <Text style={styles.userRole}>(BM SE)</Text>
         </View>
 
         {/* Settings list */}
