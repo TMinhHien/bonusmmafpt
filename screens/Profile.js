@@ -1,78 +1,74 @@
 import React from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
+  View, Text, StyleSheet, TouchableOpacity, ScrollView,
 } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SETTINGS_OPTIONS } from '../data/data';
 import SettingOption from '../components/SettingOption';
+import { Background, CameraIcon } from '../components/index';
 
 export default function Profile() {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView>
-        {/* Cover banner */}
+    <SafeAreaProvider style={styles.safeArea}>
+      <View style={styles.container}>
         <View style={styles.coverContainer}>
-          <View style={styles.coverGradient} />
+          <Background width="100%" height="100%" />
         </View>
 
-        {/* Avatar overlapping */}
+        {/* Profile Picture (Overlapping) */}
         <View style={styles.avatarWrapper}>
           <View style={styles.avatarCircle}>
             <Text style={styles.avatarLetter}>H</Text>
           </View>
           <TouchableOpacity style={styles.cameraButton} activeOpacity={0.8}>
-            <Text style={styles.cameraIcon}>📷</Text>
+            <CameraIcon width="100%" height="100%" />
           </TouchableOpacity>
         </View>
 
-        {/* Name & role */}
         <View style={styles.infoContainer}>
           <Text style={styles.userName}>Tran Dang Viet Huy (HUYTDV1)</Text>
           <Text style={styles.userRole}>(FHL.F3.GST.GCX)</Text>
         </View>
+      </View>
 
-        {/* Settings options */}
-        <View style={styles.settingsList}>
+      <View>
+        <ScrollView>
           {SETTINGS_OPTIONS.map((option, index) => (
-            <SettingOption
-              key={option.id}
-              option={option}
-              total={SETTINGS_OPTIONS.length}
-              index={index}
-            />
+            <View key={index}>
+              <SettingOption
+                option={option}
+                total={SETTINGS_OPTIONS.length}
+                index={index}
+              />
+            </View>
           ))}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </View>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f2eff2',
+    backgroundColor: '#fffeff',
+    paddingHorizontal: 20,
+  },
+  container: {
+    backgroundColor: '#fffeff',
+    alignItems: 'center',
+    marginTop: 25,
+    marginBottom: 25,
   },
   coverContainer: {
     width: '100%',
-    height: 160,
-    overflow: 'hidden',
-  },
-  coverGradient: {
-    flex: 1,
-    backgroundColor: '#3b82f6',
-    // Simulate gradient with a lighter overlay
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
+    height: 150,
+    marginTop: 10,
   },
   avatarWrapper: {
     marginTop: -65,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 0,
   },
   avatarCircle: {
     width: 130,
@@ -96,29 +92,18 @@ const styles = StyleSheet.create({
   },
   cameraButton: {
     position: 'absolute',
-    bottom: 2,
-    right: '32%',
+    bottom: 5,
+    right: 5,
     width: 38,
     height: 38,
     borderRadius: 19,
-    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.15,
-    shadowRadius: 3,
-  },
-  cameraIcon: {
-    fontSize: 18,
   },
   infoContainer: {
-    marginTop: 14,
-    marginBottom: 20,
+    marginTop: 15,
     alignItems: 'center',
     paddingHorizontal: 20,
-    backgroundColor: '#f2eff2',
   },
   userName: {
     fontSize: 19,
@@ -127,14 +112,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   userRole: {
-    fontSize: 15,
-    color: '#555',
+    fontSize: 16,
+    color: '#555555',
     marginTop: 4,
-  },
-  settingsList: {
-    marginHorizontal: 0,
-    backgroundColor: '#fffeff',
-    borderTopWidth: 1,
-    borderTopColor: '#e0dde0',
   },
 });

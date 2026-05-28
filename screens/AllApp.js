@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { APP_CATEGORIES } from '../data/data';
 import AppCategory from '../components/AppCategory';
+import { GridViewIcon } from '../components/index';
 import SearchBar from '../components/SearchBar';
 
 export default function AllApp() {
@@ -17,18 +18,16 @@ export default function AllApp() {
     : APP_CATEGORIES;
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#f2eff2' }}>
-      {/* Top navigation bar */}
+    <View style={{ flex: 1, marginBottom: 0 }}>
       <View style={styles.navigationBar}>
         <View style={styles.searchBar}>
           <SearchBar value={search} onChangeText={text => setSearch(text)} />
         </View>
-        <TouchableOpacity onPress={() => alert('Ongoing')} style={styles.gridBtn}>
-          <Text style={styles.gridIcon}>⊞</Text>
+        <TouchableOpacity onPress={() => alert('Ongoing')} style={styles.appView}>
+          <GridViewIcon width="100%" height="100%" />
         </TouchableOpacity>
       </View>
 
-      {/* List */}
       <FlatList
         data={filteredCategories}
         keyExtractor={item => item.id}
@@ -36,9 +35,8 @@ export default function AllApp() {
           <AppCategory categoryTitle={item.title} sections={item.sections} />
         )}
         ListHeaderComponent={
-          <Text style={styles.pageTitle}>All Apps</Text>
+          <Text style={styles.title}>All Apps</Text>
         }
-        contentContainerStyle={{ paddingBottom: 24 }}
       />
     </View>
   );
@@ -46,35 +44,34 @@ export default function AllApp() {
 
 const styles = StyleSheet.create({
   navigationBar: {
+    display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
+    rowGap: 5,
     backgroundColor: '#fffeff',
-    paddingTop: 48,
-    paddingBottom: 8,
-    paddingHorizontal: 12,
+    marginBottom: 0,
+    paddingTop: 20,
   },
   searchBar: {
-    flex: 1,
-    height: 36,
-    marginRight: 10,
+    marginHorizontal: 12,
+    marginTop: 10,
+    flexGrow: 1,
+    flexShrink: 1,
+    height: 40,
   },
-  gridBtn: {
-    width: 30,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+  appView: {
+    aspectRatio: 1,
+    height: 25,
+    flexShrink: 1,
+    backgroundColor: '#fffeff',
+    marginTop: 12,
+    marginRight: 12,
   },
-  gridIcon: {
-    fontSize: 22,
-    color: '#555',
-  },
-  pageTitle: {
-    paddingLeft: 20,
-    paddingTop: 20,
-    paddingBottom: 8,
+  title: {
+    marginBottom: 16,
     fontSize: 30,
     fontWeight: 'bold',
+    paddingLeft: 20,
+    paddingTop: 20,
     backgroundColor: '#fffeff',
-    color: '#1a1a1a',
   },
 });

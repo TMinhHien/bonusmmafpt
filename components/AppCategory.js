@@ -10,7 +10,7 @@ const AppCategory = ({ categoryTitle, sections }) => {
         {sections.map((sec, i) => (
           <AppCategorySection
             key={sec.id}
-            icon={sec.icon}
+            Icon={sec.Icon}
             title={sec.title}
             subtitle={sec.subtitle}
             total={sections.length}
@@ -26,15 +26,14 @@ export default AppCategory;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 14,
+    marginTop: 10,
   },
   title: {
-    marginBottom: 6,
+    marginBottom: 10,
     paddingLeft: 20,
     fontWeight: '600',
-    fontSize: 13,
+    fontSize: 14,
     color: '#494649',
-    letterSpacing: 0.5,
   },
   sectionContainer: {
     backgroundColor: '#fffeff',

@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function AppCategorySection({ icon, title, subtitle, total, index }) {
+export default function AppCategorySection({ Icon, title, subtitle, total, index }) {
   const isLast = index === total - 1;
   return (
     <View style={isLast ? styles.containerNoBorder : styles.container}>
       <View style={styles.iconContainer}>
-        <Text style={styles.icon}>{icon}</Text>
+        {typeof Icon === 'function' && (
+          <Icon width="100%" height="100%" />
+        )}
       </View>
       <View style={styles.detailContainer}>
         <Text style={styles.detailTitle}>{title}</Text>
@@ -21,45 +23,34 @@ const styles = StyleSheet.create({
     marginLeft: 18,
     marginRight: 18,
     flexDirection: 'row',
-    paddingTop: 18,
-    paddingBottom: 18,
-    gap: 12,
+    paddingTop: 20,
+    paddingBottom: 20,
+    gap: 10,
     borderBottomColor: '#eae7ea',
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
+    borderStyle: 'solid',
   },
   containerNoBorder: {
     marginLeft: 18,
     marginRight: 18,
     flexDirection: 'row',
-    paddingTop: 18,
-    paddingBottom: 18,
-    gap: 12,
+    paddingTop: 20,
+    paddingBottom: 20,
+    gap: 10,
   },
   iconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 12,
-    backgroundColor: '#f0f4ff',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  icon: {
-    fontSize: 24,
+    aspectRatio: 1,
+    width: 50,
   },
   detailContainer: {
-    flex: 1,
+    flexShrink: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
-    gap: 4,
+    rowGap: 10,
   },
   detailTitle: {
     fontWeight: 'bold',
-    fontSize: 15,
-    color: '#1a1a1a',
   },
   detailSubtitle: {
     color: '#5a585b',
-    fontSize: 13,
-    lineHeight: 18,
   },
 });
